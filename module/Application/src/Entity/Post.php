@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * This class represents a single post in a blog.
- * @ORM\Entity(repositoryClass="\Application\Repository\PostRepository")
+ * @ORM\Entity
  * @ORM\Table(name="post")
  */
 class Post
@@ -42,14 +42,28 @@ class Post
      */
     protected $dateCreated;
 
+    /**
+     * @ORM\OneToMany(targetEntity="\Application\Entity\Comment", mappedBy="post")
+     * @ORM\JoinColumn(name="id", referencedColumnName="post_id")
+     */
+    protected $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="\Application\Entity\Tag", inversedBy="posts")
+     * @ORM\JoinTable(name="post_tag",
+     *      joinColumns={@ORM\JoinColumn(name="post_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $tags;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-
+        $this->comments = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -141,7 +155,41 @@ class Post
         $this->dateCreated = $dateCreated;
     }
 
+    /**
+     * Returns comments for this post.
+     * @return array
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 
+    /**
+     * Adds a new comment to this post.
+     * @param $comment
+     */
+    public function addComment($comment)
+    {
+        $this->comments[] = $comment;
+    }
+
+    /**
+     * Returns tags for this post.
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Adds a new tag to this post.
+     * @param $tag
+     */
+    public function addTag($tag)
+    {
+        $this->tags[] = $tag;
+    }
 
     /**
      * Removes association between this post and the given tag.
