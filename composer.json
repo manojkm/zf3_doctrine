@@ -18,7 +18,10 @@
         "zfcampus/zf-development-mode": "^3.0",
         "zendframework/zend-mvc-form": "^1.0",
         "doctrine/doctrine-orm-module": "^1.1",
-        "zendframework/zend-developer-tools": "dev-master"
+        "zendframework/zend-developer-tools": "dev-master",
+        "san/san-session-toolbar": "^1.0",
+        "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
+        "bjyoungblood/bjy-profiler": "^1.1"
     },
     "autoload": {
         "psr-4": {
