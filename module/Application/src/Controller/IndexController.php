@@ -20,10 +20,18 @@ class IndexController extends AbstractActionController
      */
     private $entityManager;
 
+    /**
+     * Post manager.
+     * @var Application\Service\PostManager
+     */
+    private $postManager;
+
+
     // Constructor method is used to inject dependencies to the controller.
-    public function __construct($entityManager)
+    public function __construct($entityManager, $postManager)
     {
         $this->entityManager = $entityManager;
+        $this->postManager = $postManager;
     }
 
     // This is the default "index" action of the controller. It displays the
@@ -37,9 +45,9 @@ class IndexController extends AbstractActionController
 
         // Render the view template
         return new ViewModel([
-            'posts' => $posts
+            'posts' => $posts,
+            'postManager' => $this->postManager,
         ]);
     }
-
 
 }

@@ -12,4 +12,6 @@
         <?= $this->escapeHtml($post->getContent()); ?>
     </p>
 
+    Tags: <?= $this->escapeHtml($postManager->convertTagsToString($post)); ?>
+
 <?php endforeach; ?>

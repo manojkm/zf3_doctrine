@@ -43,6 +43,11 @@ return [
                 Controller\Factory\IndexControllerFactory::class,
         ],
     ],
+    'service_manager' => [
+        'factories' => [
+            Service\PostManager::class => Service\Factory\PostManagerFactory::class,
+        ],
+    ],
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
