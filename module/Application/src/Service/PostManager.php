@@ -46,6 +46,15 @@ class PostManager
         return $tagsStr;
     }
 
+    // Calculates frequencies of tag usage.
+    public function getTagCloud()
+    {
+        $posts = $this->entityManager->getRepository(Post::class)
+            ->findPostsHavingAnyTag();
+
+        return $posts;
+    }
+
 
 }
 

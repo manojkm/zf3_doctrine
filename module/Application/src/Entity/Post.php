@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * This class represents a single post in a blog.
- * @ORM\Entity
+ * @ORM\Entity (repositoryClass="\Application\Repository\PostRepository")
  * @ORM\Table(name="post")
  */
 class Post
