@@ -38,15 +38,20 @@ class IndexController extends AbstractActionController
     // Posts page containing the recent blog posts.
     public function indexAction()
     {
+
         // Get recent posts
         $posts = $this->entityManager->getRepository(Post::class)
             ->findBy(['status'=>Post::STATUS_PUBLISHED],
                 ['dateCreated'=>'DESC']);
 
+        // Get popular tags.
+        $tagCloud = $this->postManager->getTagCloud();
+
         // Render the view template
         return new ViewModel([
             'posts' => $posts,
             'postManager' => $this->postManager,
+            'tagCloud' => $tagCloud
         ]);
     }
 
