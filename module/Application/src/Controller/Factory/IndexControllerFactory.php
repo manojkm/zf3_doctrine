@@ -17,8 +17,18 @@ class IndexControllerFactory implements FactoryInterface
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
         $postManager = $container->get(PostManager::class);
 
+        //Config tutorial : https://github.com/zf-fr/zfr-mailchimp-module
+        $config = $container->get('Config');
+        $ebayApi = $config['ebay_api'];
+
+        if (!isset($ebayApi)) {
+            throw new Exception\RuntimeException(
+                'No config was found for ZfrMailChimpModule. Did you copy the `zfr_mailchimp.local.php` file to your autoload folder?'
+            );
+        }
+
         // Instantiate the controller and inject dependencies
-        return new IndexController($entityManager, $postManager);
+        return new IndexController($entityManager, $postManager,$ebayApi);
     }
 }
 

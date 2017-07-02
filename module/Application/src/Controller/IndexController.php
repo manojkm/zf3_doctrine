@@ -11,6 +11,13 @@ use Application\Entity\Post;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+use \DTS\eBaySDK\Constants;
+use \DTS\eBaySDK\Trading\Services;
+use \DTS\eBaySDK\Trading\Types;
+use \DTS\eBaySDK\Trading\Enums;
+
+
+
 class IndexController extends AbstractActionController
 {
 
@@ -26,12 +33,19 @@ class IndexController extends AbstractActionController
      */
     private $postManager;
 
+    /**
+     * @var array
+     */
+    private $config = [];
+
 
     // Constructor method is used to inject dependencies to the controller.
-    public function __construct($entityManager, $postManager)
+    public function __construct($entityManager, $postManager, $config)
     {
         $this->entityManager = $entityManager;
         $this->postManager = $postManager;
+        $this->config = $config;
+
     }
 
     // This is the default "index" action of the controller. It displays the
@@ -47,11 +61,53 @@ class IndexController extends AbstractActionController
         // Get popular tags.
         $tagCloud = $this->postManager->getTagCloud();
 
+
+//        // Create the service object.
+//        $service = new Services\ShoppingService([
+//            'apiVersion'  => '1.13.0',
+//            'globalId'    => 'EBAY-US',
+//            'credentials' =>  $this->config['sandbox']['credentials'],
+//
+//        ]);
+//
+//        // Create the request object.
+//        $request = new Types\GeteBayTimeRequestType();
+//
+//        // Send the request to the service operation.
+//        $response = $service->geteBayTime($request);
+
+        /**
+         * Create the service object.
+         */
+        $service = new Services\TradingService([
+            'credentials' => $this->config['sandbox']['credentials'],
+            'siteId'      => Constants\SiteIds::US,
+            'sandbox' => true,
+        ]);
+        /**
+         * Create the request object.
+         */
+        $request = new Types\GeteBayOfficialTimeRequestType();
+        /**
+         * An user token is required when using the Trading service.
+         */
+        $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
+        $request->RequesterCredentials->eBayAuthToken = $this->config['sandbox']['authToken'];
+        /**
+         * Send the request.
+         */
+        $response = $service->geteBayOfficialTime($request);
+        $severityCodeType = new  Enums\SeverityCodeType;
+
+
         // Render the view template
         return new ViewModel([
             'posts' => $posts,
             'postManager' => $this->postManager,
-            'tagCloud' => $tagCloud
+            'tagCloud' => $tagCloud,
+            'response' => $response,
+            'severityCodeType' => $severityCodeType,
+
         ]);
     }
 
