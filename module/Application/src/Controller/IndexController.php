@@ -97,7 +97,7 @@ class IndexController extends AbstractActionController
          * Send the request.
          */
         $response = $service->geteBayOfficialTime($request);
-        $severityCodeType = new  Enums\SeverityCodeType;
+        $severityCodeType = new Enums\SeverityCodeType;
 
 
         // Render the view template

@@ -5,6 +5,7 @@ use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Application\Service\PostManager;
 use Application\Controller\IndexController;
+use Exception;
 
 /**
  * This is the factory for IndexController. Its purpose is to instantiate the
@@ -22,8 +23,8 @@ class IndexControllerFactory implements FactoryInterface
         $ebayApi = $config['ebay_api'];
 
         if (!isset($ebayApi)) {
-            throw new Exception\RuntimeException(
-                'No config was found for ZfrMailChimpModule. Did you copy the `zfr_mailchimp.local.php` file to your autoload folder?'
+            throw new Exception(
+                'No config was found for eBay Api. Did you copy the `ebay_api.local.php` file to your autoload folder?'
             );
         }
 
