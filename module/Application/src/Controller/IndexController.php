@@ -83,7 +83,7 @@ class IndexController extends AbstractActionController
         $service = new Services\TradingService([
             'credentials' => $config['credentials'],
             'siteId'      => Constants\SiteIds::US,
-            'sandbox' => true,
+            'sandbox'     => true,
         ]);
         /**
          * Create the request object.
