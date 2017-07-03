@@ -17,6 +17,7 @@ return [
      * in the current directory will be used.
      */
     'mode' => '',
+    'sandbox' => true,
 
             'credentials' => [
                 'devId' => '1fec4e3f-4bcb-43a7-9124-9ff0a43f3d2f',
