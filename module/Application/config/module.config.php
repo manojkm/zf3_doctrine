@@ -46,6 +46,7 @@ return [
     'service_manager' => [
         'factories' => [
             Service\PostManager::class => Service\Factory\PostManagerFactory::class,
+            Service\ConfigManager::class => InvokableFactory::class
         ],
     ],
     'view_manager' => [

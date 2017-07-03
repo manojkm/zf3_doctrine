@@ -36,15 +36,15 @@ class IndexController extends AbstractActionController
     /**
      * @var array
      */
-    private $config = [];
+    private $configManager;
 
 
     // Constructor method is used to inject dependencies to the controller.
-    public function __construct($entityManager, $postManager, $config)
+    public function __construct($entityManager, $postManager, $configManager)
     {
         $this->entityManager = $entityManager;
         $this->postManager = $postManager;
-        $this->config = $config;
+        $this->configManager = $configManager;
 
     }
 
@@ -52,6 +52,7 @@ class IndexController extends AbstractActionController
     // Posts page containing the recent blog posts.
     public function indexAction()
     {
+        $config = $this->configManager->getConfig();
 
         // Get recent posts
         $posts = $this->entityManager->getRepository(Post::class)
@@ -80,7 +81,7 @@ class IndexController extends AbstractActionController
          * Create the service object.
          */
         $service = new Services\TradingService([
-            'credentials' => $this->config['sandbox']['credentials'],
+            'credentials' => $config['credentials'],
             'siteId'      => Constants\SiteIds::US,
             'sandbox' => true,
         ]);
@@ -92,7 +93,7 @@ class IndexController extends AbstractActionController
          * An user token is required when using the Trading service.
          */
         $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-        $request->RequesterCredentials->eBayAuthToken = $this->config['sandbox']['authToken'];
+        $request->RequesterCredentials->eBayAuthToken = $config['authToken'];
         /**
          * Send the request.
          */
