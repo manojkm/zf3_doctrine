@@ -1,0 +1,6 @@
+https://github.com/ipascual/MyZend_Email
+https://github.com/ipascual/MyZend_Email/blob/master/Module.php
+
+https://github.com/zf-fr/zfr-mailchimp-module
+https://github.com/zf-fr/zfr-mailchimp-module/blob/master/src/ZfrMailChimpModule/Factory/MailChimpClientFactory.php
+https://github.com/zf-fr/zfr-mailchimp-module/blob/master/config/zfr_mailchimp.local.php.dist
