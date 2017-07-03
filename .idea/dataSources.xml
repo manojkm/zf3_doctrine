@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="oleg_blog@localhost" uuid="ef4f536a-3d39-4d46-8b9a-696370b8326d">
+    <data-source source="LOCAL" name="zf3_doctrine@localhost" uuid="b1487dbb-6f2c-458f-b23c-cad9c6828807">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/oleg_blog</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/zf3_doctrine</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

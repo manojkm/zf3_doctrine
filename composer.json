@@ -22,7 +22,9 @@
         "san/san-session-toolbar": "^1.0",
         "zendframework/zend-mvc-plugin-flashmessenger": "^1.0",
         "bjyoungblood/bjy-profiler": "^1.1",
+        "doctrine/migrations": "^1.5",
         "dts/ebay-sdk-php": "^13.0"
+
     },
     "autoload": {
         "psr-4": {

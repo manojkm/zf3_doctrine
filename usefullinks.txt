@@ -4,3 +4,16 @@ https://github.com/ipascual/MyZend_Email/blob/master/Module.php
 https://github.com/zf-fr/zfr-mailchimp-module
 https://github.com/zf-fr/zfr-mailchimp-module/blob/master/src/ZfrMailChimpModule/Factory/MailChimpClientFactory.php
 https://github.com/zf-fr/zfr-mailchimp-module/blob/master/config/zfr_mailchimp.local.php.dist
+
+USEFULL EBAY LINKS
+http://developer.ebay.com/DevZone/XML/docs/Concepts/MakingACall.html
+http://developer.ebay.com/DevZone/guides/ebayfeatures/Basics/eBay-SitesEnvironments.html#TheProductionandSandboxEnvironments
+
+Opening and Managing an eBay Store
+http://developer.ebay.com/DevZone/guides/ebayfeatures/Development/Sites-eBayStore.html
+
+Making a call
+http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/GeteBayOfficialTime.html#Samples
+
+XML Flow Tutorial: Getting Tokens
+http://developer.ebay.com/DevZone/XML/docs/HowTo/Tokens/GettingTokens.html
