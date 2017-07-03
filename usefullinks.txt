@@ -17,3 +17,6 @@ http://developer.ebay.com/DevZone/XML/docs/Reference/eBay/GeteBayOfficialTime.ht
 
 XML Flow Tutorial: Getting Tokens
 http://developer.ebay.com/DevZone/XML/docs/HowTo/Tokens/GettingTokens.html
+
+Did config manager based on this sample
+https://github.com/rearley/ebay
