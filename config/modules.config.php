@@ -38,4 +38,5 @@ return [
     'ZendDeveloperTools',
     'Application',
     'SanSessionToolbar', // put at the end of modules list!z
+    'Ebay',
 ];
