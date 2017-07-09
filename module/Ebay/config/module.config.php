@@ -2,20 +2,29 @@
 namespace Ebay;
 
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\Router\Http\Literal;
+use Zend\Router\Http\Segment;
 
 return [
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
+            Service\ConfigManager::class => InvokableFactory::class,
+            Service\TradingManager::class =>  Service\Factory\TradingManagerFactory::class,
+            Service\ShoppingManager::class =>  Service\Factory\ShoppingManagerFactory::class
         ],
     ],
     'router' => [
         'routes' => [
             'ebay' => [
-                'type'    => 'Literal',
+                'type'    => Segment::class,
                 'options' => [
                     // Change this to something specific to your module
-                    'route'    => '/ebay',
+                    'route'    => '/ebay[/:action]',
                     'defaults' => [
                         'controller'    => Controller\IndexController::class,
                         'action'        => 'index',
@@ -27,6 +36,7 @@ return [
                     // route defined above here.
                 ],
             ],
+
         ],
     ],
     'view_manager' => [

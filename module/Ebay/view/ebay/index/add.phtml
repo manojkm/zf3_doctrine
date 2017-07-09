@@ -1,0 +1,39 @@
+<?php
+
+/**
+* Output the result of calling the service operation.
+*/
+$browse = '';
+
+if (isset($response->Errors)) {
+    foreach ($response->Errors as $error) {
+        printf(
+            "%s: %s\n%s\n\n",
+            $error->SeverityCode === $severityCodeType::C_ERROR ? 'Error' : 'Warning',
+            $error->ShortMessage,
+            $error->LongMessage
+        );
+    }
+}
+if ($response->Ack !== 'Failure') {
+
+
+    foreach ($response->CategoryArray->Category as $cat) {
+        /*printf(
+            "Category (%s) %s\n",
+            $cat->CategoryID,
+            $cat->CategoryName
+        );*/
+
+        if($cat->CategoryLevel!=0):
+            $browse.='<option value="'.$cat->CategoryID.'">'.$cat->CategoryName.'</option>';
+        endif;
+
+    }
+}
+//echo \DTS\eBaySDK\Shopping\Services\ShoppingService::API_VERSION;
+
+?>
+
+<select size="15" id="fcat"><?php echo $browse ?></select>
+

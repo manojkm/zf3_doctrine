@@ -33,18 +33,13 @@ class IndexController extends AbstractActionController
      */
     private $postManager;
 
-    /**
-     * @var array
-     */
-    private $configManager;
 
 
     // Constructor method is used to inject dependencies to the controller.
-    public function __construct($entityManager, $postManager, $configManager)
+    public function __construct($entityManager, $postManager)
     {
         $this->entityManager = $entityManager;
         $this->postManager = $postManager;
-        $this->configManager = $configManager;
 
     }
 
@@ -52,7 +47,6 @@ class IndexController extends AbstractActionController
     // Posts page containing the recent blog posts.
     public function indexAction()
     {
-        $config = $this->configManager->getConfig();
 
         // Get recent posts
         $posts = $this->entityManager->getRepository(Post::class)
@@ -77,28 +71,6 @@ class IndexController extends AbstractActionController
 //        // Send the request to the service operation.
 //        $response = $service->geteBayTime($request);
 
-        /**
-         * Create the service object.
-         */
-        $service = new Services\TradingService([
-            'credentials' => $config['credentials'],
-            'siteId'      => Constants\SiteIds::US,
-            'sandbox'     => $config['sandbox'],
-        ]);
-        /**
-         * Create the request object.
-         */
-        $request = new Types\GeteBayOfficialTimeRequestType();
-        /**
-         * An user token is required when using the Trading service.
-         */
-        $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-        $request->RequesterCredentials->eBayAuthToken = $config['authToken'];
-        /**
-         * Send the request.
-         */
-        $response = $service->geteBayOfficialTime($request);
-        $severityCodeType = new Enums\SeverityCodeType;
 
 
         // Render the view template
@@ -106,9 +78,6 @@ class IndexController extends AbstractActionController
             'posts' => $posts,
             'postManager' => $this->postManager,
             'tagCloud' => $tagCloud,
-            'response' => $response,
-            'severityCodeType' => $severityCodeType,
-
         ]);
     }
 

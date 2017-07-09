@@ -1,11 +1,12 @@
 <?php
-namespace Application\Controller\Factory;
+namespace Ebay\Controller\Factory;
 
 use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Application\Service\PostManager;
-use Application\Service\ConfigManager;
-use Application\Controller\IndexController;
+use Ebay\Service\ConfigManager;
+use Ebay\Service\TradingManager;
+use Ebay\Service\ShoppingManager;
+use Ebay\Controller\IndexController;
 
 
 /**
@@ -17,11 +18,6 @@ class IndexControllerFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $entityManager = $container->get('doctrine.entitymanager.orm_default');
-        $postManager = $container->get(PostManager::class);
-
-        //Config sample : https://github.com/rearley/ebay/blob/master/src/Earley/Ebay/Common/Config.php
-//        $configManger = $container->get(ConfigManager::class);
-
 
         //Config tutorial : https://github.com/zf-fr/zfr-mailchimp-module
 //        $config = $container->get('Config');
@@ -33,8 +29,13 @@ class IndexControllerFactory implements FactoryInterface
 //            );
 //        }
 
+        //Config sample : https://github.com/rearley/ebay/blob/master/src/Earley/Ebay/Common/Config.php
+        $configManger = $container->get(ConfigManager::class);
+        $tradingManger = $container->get(TradingManager::class);
+        $shoppingManager = $container->get(ShoppingManager::class);
+
         // Instantiate the controller and inject dependencies
-        return new IndexController($entityManager, $postManager);
+        return new IndexController($entityManager, $configManger,$tradingManger, $shoppingManager);
     }
 }
 
